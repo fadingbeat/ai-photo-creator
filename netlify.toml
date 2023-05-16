@@ -2,3 +2,5 @@
   command = "npm run build"
   functions = "functions"
   publish = "dist/image-creation"
+[functions]
+  node_bundler = "esbuild"
