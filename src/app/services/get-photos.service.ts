@@ -5,8 +5,9 @@ import axios from 'axios';
     providedIn: 'root',
 })
 export class GetPhotosService {
-    createPhotos = async () => {
-        const url = '.netlify/functions/get-photos-model';
+    public value = '';
+    createPhotos = async (description: string) => {
+        const url = `.netlify/functions/get-photos-model?prompt=${description}`;
         try {
             const { data } = await axios.get(url);
             console.log('data', data);

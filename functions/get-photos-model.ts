@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions';
 import { Configuration, OpenAIApi } from 'openai';
 
-export const handler = async () => {
+export const handler: Handler = async (event, context) => {
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY,
     });
@@ -11,12 +11,14 @@ export const handler = async () => {
     //     prompt: 'Beautiful angel woman with long blond purple hair',
     //     n: 2,
     // };
+    const prompt = event.queryStringParameters?.prompt || 'Violet flame';
     try {
         const data = await openai.createImage({
-            prompt: 'Beautiful angel woman with long blond purple hair',
+            prompt,
             n: 1,
         });
-        console.log('response', data);
+        console.log('event', event);
+        console.log('context', context);
         return {
             statusCode: 200,
             body: JSON.stringify({ data: data.data }),
