@@ -8,3 +8,36 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mat-flex-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.mat-headline-1 {
+    font-size: 5.9vw;
+}
+.mat-headline-1,
+.mat-subtitle-2 {
+    align-self: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+.mat-button {
+    margin: 0 auto;
+}
+.mat-mdc-form-field {
+    margin: 0 10%;
+}
+.mat-gen-images {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.images-list {
+    padding: 5em;
+}
+.mat-grid-list .mat-grid-tile-content {
+    align-items: stretch;
+}

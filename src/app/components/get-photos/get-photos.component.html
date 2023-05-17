@@ -1,14 +1,36 @@
-<h1>Generate visual arts and photography</h1>
-<mat-form-field class="example-form-field">
-  <mat-label>Description</mat-label>
-  <input matInput type="text" [(ngModel)]="value">
-  <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-    <mat-icon>close</mat-icon>
-  </button>
-</mat-form-field>
+<form class="mat-flex-form">
+  <div class="mat-headline-1">Welcome to AI image generator</div>
+  <p class="mat-subtitle-2">Use the power of Artificial Intelligence to create stunning visual arts and photography -
+    simply by typing in the
+    description.</p>
+  <mat-form-field class="mat-form-field">
+    <mat-label>Description</mat-label>
+    <input matInput #message maxlength="256" type="text" [(ngModel)]="value" [ngModelOptions]="{standalone: true}">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-hint align="start">Try it for free. </mat-hint>
+    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+  </mat-form-field>
+  <div class="mat-button">
+    <button mat-raised-button color="accent" (click)="generatePhotos()">Generate</button>
+  </div>
+</form>
 
-<button mat-raised-button color="accent" (click)="generatePhotos()">Submit</button>
+<ng-template [ngIf]="generatedImages">
+  <div class="images-list">
+    <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
+      <mat-grid-tile *ngFor="let photo of generatedImages">
+        <img src={{photo.url}} />
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</ng-template>
 
-<div *ngFor="let photo of generatedImages">
-  <img src={{photo.url}} />
+<div class="images-list">
+  <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
+    <mat-grid-tile *ngFor=" let image of images">
+      <img src={{image.url}} />
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
