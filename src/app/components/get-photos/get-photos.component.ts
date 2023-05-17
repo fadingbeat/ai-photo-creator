@@ -10,14 +10,15 @@ import { Observable } from 'rxjs';
 })
 export class GetPhotosComponent implements OnInit {
     generatedImages = [] as any;
+    value = '';
     constructor(private getPhotosService: GetPhotosService) {}
 
     ngOnInit() {
-        this.generatePhotos();
+        // this.generatePhotos();
     }
 
     generatePhotos = () => {
-        this.getPhotosService.createPhotos().then(
+        this.getPhotosService.createPhotos(this.value).then(
             (res) => {
                 this.generatedImages = res.data.data;
             },
