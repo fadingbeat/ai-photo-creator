@@ -10,10 +10,8 @@ export class GetPhotosService {
         const url = `.netlify/functions/get-photos-model?prompt=${description}`;
         try {
             const { data } = await axios.get(url);
-            console.log('data', data);
             return data;
         } catch (error) {
-            console.log('error', error);
             return {
                 statusCode: status,
                 body: JSON.stringify({ error }),
