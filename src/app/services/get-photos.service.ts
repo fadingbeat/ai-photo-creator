@@ -1,21 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { Observable } from 'rxjs';
+import { ImagesInfo } from '../models/images';
 
 @Injectable({
     providedIn: 'root',
 })
 export class GetPhotosService {
-    public value = '';
-    createPhotos = async (description: string) => {
-        const url = `.netlify/functions/get-photos-model?prompt=${description}`;
-        try {
-            const { data } = await axios.get(url);
-            return data;
-        } catch (error) {
-            return {
-                statusCode: status,
-                body: JSON.stringify({ error }),
-            };
-        }
+    constructor(private http: HttpClient) {}
+    getPhotos = (
+        description: string,
+        freeQuota: number
+    ): Observable<ImagesInfo> => {
+        const url = `.netlify/functions/get-photos-model?prompt=${description}&freeQuota=${freeQuota}`;
+
+        return this.http.get<ImagesInfo>(url);
     };
 }

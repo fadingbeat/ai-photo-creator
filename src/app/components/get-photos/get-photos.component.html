@@ -9,11 +9,11 @@
     <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
       <mat-icon>close</mat-icon>
     </button>
-    <mat-hint align="start">Try it for free. </mat-hint>
+    <mat-hint align="start">Try it for free ({{userService.getUserInteractions()}} T available). </mat-hint>
     <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
   </mat-form-field>
   <div class="mat-button">
-    <button mat-raised-button color="accent" (click)="generatePhotos()">Generate</button>
+    <button id="btnGenerate" mat-raised-button color="accent" (click)="generatePhotos()">Generate</button>
   </div>
 </form>
 
