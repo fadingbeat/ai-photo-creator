@@ -13,7 +13,8 @@ export class GetPhotosService {
         description: string,
         freeQuota: number
     ): Observable<ImagesInfo> => {
-        const url = `.netlify/functions/get-photos-model?prompt=${description}&freeQuota=${freeQuota}`;
+        const url = 'http://localhost:3002/generate-image';
+        // const url = `.netlify/functions/get-photos-model?prompt=${description}&freeQuota=${freeQuota}`;
 
         return this.http.get<ImagesInfo>(url);
     };

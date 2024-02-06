@@ -48,5 +48,5 @@ Thumbs.db
 # Local Netlify folder
 .netlify
 
-# Auth0 Config
+#auth0 config
 auth_config.json
