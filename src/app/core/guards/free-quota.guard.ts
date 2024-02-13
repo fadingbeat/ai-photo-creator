@@ -12,7 +12,7 @@ export class FreeQuotaGuard implements CanActivate {
     canActivate(): boolean {
         if (this.userService.hasExceededFreeQuota()) {
             // Redirect to a registration or upgrade page
-            this.router.navigate(['/registration']);
+            this.router.navigate(['/login']);
             return false;
         }
 
