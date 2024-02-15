@@ -7,4 +7,5 @@ export const environment = {
             redirect_uri: process.env.AUTH0_CALLBACK_URL_NETLIFY_LOCAL,
         },
     },
+    stripe_live_pk: process.env.STRIPE_LIVE_PUBLISHABLE_KEY,
 };
