@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env, environment } from '../environments/environment';
+import { AuthModule } from '@auth0/auth0-angular';
+import { NgxStripeModule } from 'ngx-stripe';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
@@ -19,7 +20,6 @@ import { LogoutButtonComponent } from './components/Authentication/logout-button
 import { AuthenticationButtonComponent } from './components/Authentication/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/Authentication/auth-nav/auth-nav.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { producerAccessed } from '@angular/core/primitives/signals';
 
 @NgModule({
     declarations: [
@@ -44,6 +44,7 @@ import { producerAccessed } from '@angular/core/primitives/signals';
             },
         }),
         AppRoutingModule,
+        NgxStripeModule.forRoot(process.env.stripe_test_pk),
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
