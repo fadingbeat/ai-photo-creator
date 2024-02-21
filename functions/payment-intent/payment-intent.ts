@@ -1,4 +1,5 @@
 import { Handler } from '@netlify/functions';
+import { Stripe } from '@stripe/stripe-js';
 
 export const handler: Handler = async (event, context) => {
     const name = event.queryStringParameters;
