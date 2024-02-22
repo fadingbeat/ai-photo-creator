@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { environment as env, environment } from '../environments/environment';
 import { AuthModule } from '@auth0/auth0-angular';
-import { NgxStripeModule } from 'ngx-stripe';
+import { NgxStripeModule, provideNgxStripe } from 'ngx-stripe';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
@@ -20,6 +20,7 @@ import { LogoutButtonComponent } from './components/Authentication/logout-button
 import { AuthenticationButtonComponent } from './components/Authentication/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/Authentication/auth-nav/auth-nav.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { PaymentElementComponent } from './components/payment-element/payment-element.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +32,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
         AuthenticationButtonComponent,
         AuthNavComponent,
         NavBarComponent,
+        PaymentElementComponent,
     ],
     imports: [
         HttpClientModule,
@@ -40,7 +42,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
             domain: process.env.AUTH0_DOMAIN,
             clientId: process.env.AUTH0_CLIENT_ID,
             authorizationParams: {
-                redirect_uri: process.env.AUTH0_CALLBACK_URL,
+                redirect_uri: process.env.AUTH0_CALLBACK_URL_NETLIFY_LOCAL,
             },
         }),
         AppRoutingModule,
@@ -50,7 +52,12 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
         FormsModule,
         MaterialModule,
     ],
-    providers: [GetPhotosService, UserService, httpInterceptorProviders],
+    providers: [
+        GetPhotosService,
+        UserService,
+        httpInterceptorProviders,
+        // provideNgxStripe(process.env.stripe_test_pk),
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
