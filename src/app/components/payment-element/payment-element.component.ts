@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeFactoryService } from 'ngx-stripe';
+import { PaymentIntent } from 'src/app/models/paymentIntent';
 import { PaymentIntentService } from 'src/app/services/payment-intent.service';
 import { environment as env } from '../../../environments/environment';
 
@@ -10,13 +11,7 @@ import { environment as env } from '../../../environments/environment';
     styleUrl: './payment-element.component.scss',
 })
 export class PaymentElementComponent implements OnInit {
-    // clientSecret: string;
-    // stripe = this.factoryService.create(env.stripe_test_pk);
-    // elementsOptions: StripeElementsOptions = {
-    //     locale: 'en',
-    //     // passing the client secret obtained from the server
-    //     clientSecret: '{{CLIENT_SECRET}}',
-    // };
+    clientSecret = '';
     constructor(
         private factoryService: StripeFactoryService,
         private paymentIntentService: PaymentIntentService
@@ -25,6 +20,8 @@ export class PaymentElementComponent implements OnInit {
     ngOnInit() {
         this.paymentIntentService.getPaymentIntent().subscribe((res) => {
             console.log('payment intent object', res);
+            this.clientSecret = res.message.client_secret;
+            console.log(this.clientSecret);
         });
     }
 }
